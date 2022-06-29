@@ -1,0 +1,55 @@
+body {
+  font-family: "Poppins", sans-serif;
+}
+.navbar-brand {
+  font-weight: 700;
+}
+.container {
+  background: url("img/weather.svg"),
+    linear-gradient(to bottom right, #e0e5f4, #dcfaff) no-repeat center;
+  background-size: cover;
+  box-shadow: 4px 4px 2px 1px rgba(147, 185, 214, 0.2);
+  border-radius: 4px;
+  margin: 15px;
+  padding: 0;
+  width: 700px;
+}
+.card {
+  background: none;
+  border: 0;
+  border-radius: 0;
+}
+#currenButton {
+  margin: 0 0 0 2px;
+}
+ul {
+  list-style: none;
+  margin: 0;
+}
+.date-time-inner {
+  color: #14a2b8;
+}
+a {
+  color: #14a2b8;
+}
+#Degrees {
+  color: #14a2b8;
+}
+.icon {
+  position: relative;
+}
+.sun {
+  position: absolute;
+  width: 100px;
+  left: 50%;
+  margin-left: -50px;
+  top: 50%;
+  margin-top: -37px;
+}
+.col-2 {
+  text-align: center;
+}
+.by {
+  margin: 20px;
+  font-size: 12px;
+}
