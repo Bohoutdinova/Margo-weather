@@ -34,7 +34,6 @@ replaceDate.innerHTML = `${dayWeek} ${getHours()}:${getMinutes()}`;
 //search weather by city input
 
 function replaceWeather(response) {
-  console.log(response.data);
   document.querySelector("#Degrees").innerHTML = Math.round(
     response.data.main.temp
   );
@@ -52,6 +51,8 @@ function getWeatherCel(city) {
   let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
   return axios.get(weatherUrl);
 }
+
+console.log(submit);
 
 function submit(event) {
   event.preventDefault();

@@ -34,16 +34,16 @@ replaceDate.innerHTML = `${dayWeek} ${getHours()}:${getMinutes()}`;
 //search weather by city input
 
 function replaceWeather(response) {
-  console.log(response.data);
   document.querySelector("#Degrees").innerHTML = Math.round(
     response.data.main.temp
   );
   document.querySelector("#currentCity").innerHTML = response.data.name;
   document.querySelector("#condition").innerHTML =
     response.data.weather[0].main;
-  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+  document.querySelector("#humidity").innerHTML = response.date.main.humidity;
+  console.log(response.date.main.humidity);
   document.querySelector("#wind").innerHTML = Math.round(
-    response.data.wind.speed
+    response.date.wind.speed
   );
 }
 

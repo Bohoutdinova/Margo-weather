@@ -34,7 +34,6 @@ replaceDate.innerHTML = `${dayWeek} ${getHours()}:${getMinutes()}`;
 //search weather by city input
 
 function replaceWeather(response) {
-  console.log(response.data);
   document.querySelector("#Degrees").innerHTML = Math.round(
     response.data.main.temp
   );
@@ -46,7 +45,7 @@ function replaceWeather(response) {
     response.data.wind.speed
   );
 }
-
+console.log(response);
 function getWeatherCel(city) {
   let apiKey = "d4cc0973eca06a6e519ffd554008de09";
   let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;

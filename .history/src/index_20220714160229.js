@@ -34,7 +34,6 @@ replaceDate.innerHTML = `${dayWeek} ${getHours()}:${getMinutes()}`;
 //search weather by city input
 
 function replaceWeather(response) {
-  console.log(response.data);
   document.querySelector("#Degrees").innerHTML = Math.round(
     response.data.main.temp
   );
@@ -42,6 +41,7 @@ function replaceWeather(response) {
   document.querySelector("#condition").innerHTML =
     response.data.weather[0].main;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+  console.log(response.data.main.humidity);
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
   );

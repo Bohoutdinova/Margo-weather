@@ -45,6 +45,7 @@ function replaceWeather(response) {
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
   );
+  console.log(response.data.main.humidity);
 }
 
 function getWeatherCel(city) {
