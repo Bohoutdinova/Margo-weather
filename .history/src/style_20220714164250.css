@@ -30,17 +30,12 @@ ul {
   margin: 0;
   padding: 0;
 }
-#style {
-  color: #14a2b8;
-  font-weight: 700;
-}
 #currentCity {
   color: #14a2b8;
   font-weight: 700;
 }
 .date-time-inner {
   color: #14a2b8;
-  font-weight: 700;
 }
 #condition {
   color: #14a2b8;
