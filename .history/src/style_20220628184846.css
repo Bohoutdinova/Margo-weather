@@ -26,13 +26,7 @@ ul {
   list-style: none;
   margin: 0;
 }
-#currentCity {
-  color: #14a2b8;
-}
 .date-time-inner {
-  color: #14a2b8;
-}
-#condition {
   color: #14a2b8;
 }
 a {
