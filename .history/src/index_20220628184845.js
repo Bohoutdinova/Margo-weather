@@ -40,10 +40,6 @@ function replaceWeather(response) {
   document.querySelector("#currentCity").innerHTML = response.data.name;
   document.querySelector("#condition").innerHTML =
     response.data.weather[0].main;
-  document.querySelector("#humidity").innerHTML = response.date.main.humidity;
-  document.querySelector("#wind").innerHTML = Math.round(
-    response.date.wind.speed
-  );
 }
 
 function getWeatherCel(city) {
