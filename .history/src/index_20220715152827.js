@@ -94,14 +94,18 @@ function replaceCelsius(event) {
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
-function replaceFahrenheit(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#Degrees");
-  temperatureElement.innerHTML = Math.round((celsiusTemperature * 9) / 5 + 32);
-}
-
 let Celsius = document.querySelector("#CelsiusD");
 Celsius.addEventListener("click", replaceCelsius);
 
 let Fahrenheit = document.querySelector("#FahrenheitD");
 Fahrenheit.addEventListener("click", replaceFahrenheit);
+
+//Вот этот кусок кода надо передалть передав в него реальные данные
+
+//надо будет добавить кусок кода по нажатию на линки Цельсия и Фаренгейта
+
+// function replaceFahrenheit(event) {
+//   event.preventDefault();
+//   let degrees = document.querySelector("#Degrees");
+//   degrees.innerHTML = 50; // сюда вставить результат со второй ссылки по фарингейту
+// }

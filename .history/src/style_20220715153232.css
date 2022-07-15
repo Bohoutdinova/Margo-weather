@@ -82,11 +82,6 @@ a {
   color: #14a2b8;
   font-weight: 700;
 }
-#CelsiusD:hover {
+#CelsiusD.hover {
   text-decoration: none;
-  color: #14a2b8;
-}
-#FahrenheitD:hover {
-  text-decoration: none;
-  color: #14a2b8;
 }
