@@ -90,7 +90,8 @@ function retrievePosition(position) {
   let lon = position.coords.longitude;
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
   axios.get(url).then(replaceWeather);
-  getForecast(response.data.coord);
+
+  getForecast(response.data.coord); //for forecast
 }
 
 let celsiusTemperature = null;
@@ -137,3 +138,4 @@ function displayForecast() {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
+displayForecast();

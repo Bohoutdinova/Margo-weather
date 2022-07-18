@@ -71,9 +71,8 @@ submitCity.addEventListener("submit", submit);
 //current weather button
 
 function getForecast(coordinates) {
+  let apiurl2 = `https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}`;
   let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
-  let apiurl2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}$units=metric`;
-  axios.get(apiurl2).then(displayForecast);
 }
 
 function replaceCurrent(event) {
@@ -90,7 +89,8 @@ function retrievePosition(position) {
   let lon = position.coords.longitude;
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
   axios.get(url).then(replaceWeather);
-  getForecast(response.data.coord);
+
+  getForecast(response.data.coord); //for forecast
 }
 
 let celsiusTemperature = null;
@@ -137,3 +137,4 @@ function displayForecast() {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
+displayForecast();
