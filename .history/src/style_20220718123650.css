@@ -91,16 +91,8 @@ a {
   color: #14a2b8;
 }
 #icon_1 {
-  height: 48px;
-  margin: 1px 4px 0;
-  width: 48px;
-}
-.max {
-  color: #14a2b8;
-  font-size: 16px;
-}
-.min {
-  font-size: 14px;
-  color: #14a2b8;
-  opacity: 0.6;
+  display: inline-block;
+  line-height: 1;
+  margin-right: 7px;
+  text-align: center;
 }
