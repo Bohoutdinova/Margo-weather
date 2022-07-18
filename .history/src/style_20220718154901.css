@@ -50,7 +50,9 @@ a {
   color: #14a2b8;
   font-weight: 700;
 }
-
+.degrees {
+  text-align: center;
+}
 #Degrees {
   color: #14a2b8;
   font-weight: 700;
@@ -58,7 +60,7 @@ a {
 #icon {
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin: 0 auto;
 }
 .sun {
   position: absolute;

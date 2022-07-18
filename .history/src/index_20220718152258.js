@@ -49,12 +49,7 @@ function replaceCurrent(event) {
 let currentButton = document.querySelector("#currenButton");
 currentButton.addEventListener(`click`, replaceCurrent);
 
-function formatDateForecast(timestamp) {
-  let date = new Date(timestamp * 1000);
-  let day = date.getDay();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  return days[day];
-}
+function formatDateForecast(date) {}
 
 function displayForecast(response) {
   let forecast = response.data.daily;
@@ -62,28 +57,22 @@ function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
-      forecastHTML =
-        forecastHTML +
-        `
+  forecast.forEach(function (forecastDay) {
+    forecastHTML =
+      forecastHTML +
+      `
   <div class="col-2">
   <div class="weather-forecast-date">${formatDateForecast(forecastDay.dt)}</div>
    <img src="http://openweathermap.org/img/wn/${
      forecastDay.weather[0].icon
    }@2x.png"
-                alt="" width="80"/>
+                alt="" width = 62px/>
    <div class="weather-forecast-temp">
-   <span class="weather-forecast-max">${Math.round(
-     forecastDay.temp.max
-   )}°</span> 
-   <span class="weather-forecast-min">${Math.round(
-     forecastDay.temp.min
-   )}°</span>
-    </div>
+   <span class="weather-forecast-max">${forecastDay.temp.max}°</span> 
+   <span class="weather-forecast-min">${forecastDay.temp.min}°</span>
+   </div>
 </div>
   `;
-    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
@@ -121,7 +110,7 @@ function replaceWeather(response) {
 function getWeatherCel(city) {
   let apiKey = "d4cc0973eca06a6e519ffd554008de09";
   let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
-  axios.get(weatherUrl).then(replaceWeather);
+  return axios.get(weatherUrl);
 }
 
 function submit(event) {
@@ -149,5 +138,3 @@ Celsius.addEventListener("click", replaceCelsius);
 
 let Fahrenheit = document.querySelector("#FahrenheitD");
 Fahrenheit.addEventListener("click", replaceFahrenheit);
-
-getWeatherCel("Poltava");

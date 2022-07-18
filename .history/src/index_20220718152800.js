@@ -62,17 +62,16 @@ function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
-      forecastHTML =
-        forecastHTML +
-        `
+  forecast.forEach(function (forecastDay) {
+    forecastHTML =
+      forecastHTML +
+      `
   <div class="col-2">
   <div class="weather-forecast-date">${formatDateForecast(forecastDay.dt)}</div>
    <img src="http://openweathermap.org/img/wn/${
      forecastDay.weather[0].icon
    }@2x.png"
-                alt="" width="80"/>
+                alt="" width="42"/>
    <div class="weather-forecast-temp">
    <span class="weather-forecast-max">${Math.round(
      forecastDay.temp.max
@@ -80,10 +79,9 @@ function displayForecast(response) {
    <span class="weather-forecast-min">${Math.round(
      forecastDay.temp.min
    )}°</span>
-    </div>
+</div>
 </div>
   `;
-    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
@@ -121,7 +119,7 @@ function replaceWeather(response) {
 function getWeatherCel(city) {
   let apiKey = "d4cc0973eca06a6e519ffd554008de09";
   let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
-  axios.get(weatherUrl).then(replaceWeather);
+  return axios.get(weatherUrl);
 }
 
 function submit(event) {
@@ -149,5 +147,3 @@ Celsius.addEventListener("click", replaceCelsius);
 
 let Fahrenheit = document.querySelector("#FahrenheitD");
 Fahrenheit.addEventListener("click", replaceFahrenheit);
-
-getWeatherCel("Poltava");

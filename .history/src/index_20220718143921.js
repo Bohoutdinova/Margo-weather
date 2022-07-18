@@ -1,3 +1,4 @@
+// current time
 let now = new Date();
 let day = now.getDay();
 let days = [
@@ -30,71 +31,7 @@ function getMinutes() {
 let replaceDate = document.querySelector(".date-time-inner");
 replaceDate.innerHTML = `${dayWeek} ${getHours()}:${getMinutes()}`;
 
-let submitCity = document.querySelector(".form-inline");
-submitCity.addEventListener("submit", submit);
-
-function retrievePosition(position) {
-  let apiKey = "d4cc0973eca06a6e519ffd554008de09";
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-  axios.get(url).then(replaceWeather);
-}
-
-function replaceCurrent(event) {
-  event.preventDefault();
-  navigator.geolocation.getCurrentPosition(retrievePosition);
-}
-
-let currentButton = document.querySelector("#currenButton");
-currentButton.addEventListener(`click`, replaceCurrent);
-
-function formatDateForecast(timestamp) {
-  let date = new Date(timestamp * 1000);
-  let day = date.getDay();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  return days[day];
-}
-
-function displayForecast(response) {
-  let forecast = response.data.daily;
-
-  let forecastElement = document.querySelector("#forecast");
-
-  let forecastHTML = `<div class="row">`;
-  forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
-      forecastHTML =
-        forecastHTML +
-        `
-  <div class="col-2">
-  <div class="weather-forecast-date">${formatDateForecast(forecastDay.dt)}</div>
-   <img src="http://openweathermap.org/img/wn/${
-     forecastDay.weather[0].icon
-   }@2x.png"
-                alt="" width="80"/>
-   <div class="weather-forecast-temp">
-   <span class="weather-forecast-max">${Math.round(
-     forecastDay.temp.max
-   )}°</span> 
-   <span class="weather-forecast-min">${Math.round(
-     forecastDay.temp.min
-   )}°</span>
-    </div>
-</div>
-  `;
-    }
-  });
-
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
-}
-
-function getForecast(coordinates) {
-  let apiKey = "d4cc0973eca06a6e519ffd554008de09";
-  let apiurl2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  axios.get(apiurl2).then(displayForecast);
-}
+//search weather by city input
 
 function replaceWeather(response) {
   document.querySelector("#Degrees").innerHTML = Math.round(
@@ -114,20 +51,40 @@ function replaceWeather(response) {
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
   celsiusTemperature = response.data.main.temp;
-
   getForecast(response.data.coord);
 }
 
 function getWeatherCel(city) {
   let apiKey = "d4cc0973eca06a6e519ffd554008de09";
   let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
-  axios.get(weatherUrl).then(replaceWeather);
+  return axios.get(weatherUrl);
 }
 
 function submit(event) {
   event.preventDefault();
   let submitCity = document.querySelector("#searchCityForm");
   getWeatherCel(submitCity.value).then(replaceWeather);
+}
+
+let submitCity = document.querySelector(".form-inline");
+submitCity.addEventListener("submit", submit);
+
+//current weather button
+
+function replaceCurrent(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(retrievePosition);
+}
+
+let currentButton = document.querySelector("#currenButton");
+currentButton.addEventListener(`click`, replaceCurrent);
+
+function retrievePosition(position) {
+  let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  axios.get(url).then(replaceWeather);
 }
 
 let celsiusTemperature = null;
@@ -150,4 +107,34 @@ Celsius.addEventListener("click", replaceCelsius);
 let Fahrenheit = document.querySelector("#FahrenheitD");
 Fahrenheit.addEventListener("click", replaceFahrenheit);
 
-getWeatherCel("Poltava");
+function displayForecast(response) {
+  let forecast = response.data.daily;
+
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (forecastDay) {
+    forecastHTML =
+      forecastHTML +
+      `
+  <div class="col-2">
+  <div class="weather-forecast-date">${forecastDay.dt}</div>
+   <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
+                alt=""/>
+   <div class="weather-forecast-temp">
+   <span class="weather-forecast-max">${forecastDay.temp.max}°</span> 
+   <span class="weather-forecast-min">${forecastDay.temp.min}°</span>
+   </div>
+</div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+  let apiurl2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}$units=metric`;
+  axios.get(apiurl2).then(displayForecast);
+}
