@@ -107,14 +107,12 @@ let Fahrenheit = document.querySelector("#FahrenheitD");
 Fahrenheit.addEventListener("click", replaceFahrenheit);
 
 function displayForecast() {
-  let forecastElement = document.querySelector("#forecast");
+let forecastElement = document.querySelector("#forecast");
 
-  let forecastHTML = `<div class="row">`;
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+let forecastHTML = `<div class="row">`;
+let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+days.forEach(function (day) {
+  forecastHTML = forecastHTML + `
   <div class="col-2">
   <div class="weather-forecast-date">${day}</div>
    <img src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png"
@@ -125,9 +123,4 @@ function displayForecast() {
    </div>
 </div>
   `;
-  });
-
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
-}
-displayForecast();
+});
