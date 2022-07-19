@@ -132,4 +132,10 @@ function submit(event) {
 
 let celsiusTemperature = null;
 
+function replaceCelsius(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#Degrees");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
 getWeatherCel("Poltava");
